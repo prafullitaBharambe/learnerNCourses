@@ -49,6 +49,21 @@ const readCourseById = (req,res,next) => {
     })
 } 
 
+//
+const readCourseByName = (req,res,next) => {
+    CourseModel.findById(req.params.course_name, (err,result) => {
+        if(err)
+            next(err)
+        res.json({
+            status:"Success",
+            message:"Successfully Retrieved Course By Name",
+            data:{
+                course: result
+            }
+        })
+    })
+} 
+
 
 // Update By Id
 const updateCourseById = (req,res,next) => {
@@ -80,4 +95,4 @@ const deleteCourseById = (req,res,next) => {
     })
 } 
 
-module.exports = {createCourse, readAllCourse, readCourseById, updateCourseById, deleteCourseById}
+module.exports = {createCourse, readAllCourse, readCourseById, readCourseByName,updateCourseById, deleteCourseById}
